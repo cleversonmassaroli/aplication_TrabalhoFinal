@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Trabalho Conclusão Curso Angular</title>
+	
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.css">
+	<script type="text/javascript" src="vendor/angularjs/angular.js"></script>   
+	<script type="text/javascript" src="js/myApp.js"></script>
+	<script type="text/javascript" src="js/controller/MeuController.js"></script>
+
+</head>
+<body ng-controller="MeuController">
+	<div class="container">
+		<div class="row">
+			<form ng-submit="salvaDados(usuario)"> 
+				<div class="row"> 
+					<h1>Cadastro de Usuários</h1>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-4">
+						
+						<!--Campo para Nome-->	
+						<div class="form-group">
+							<label>Nome</label>
+							<input tabindex=1 required minlength="2" ng-model="usuario.nome" class="form-control" type="text" placeholder="Insira o nome"></input>
+						</div>
+						
+						<!--Campo para Email-->
+						<div class="form-group">
+							<label>Email</label>
+							<input tabindex=2 required ng-model="usuario.email" class="form-control" type="email"  placeholder="Insira e-mail"</input>
+						</div>						
+						
+						<!--Campo para Telefone-->
+						<div class="form-group">
+							<label>Telefone</label>
+							<input tabindex=3 required minlength="8" ng-model="usuario.telefone" class="form-control" type="text" placeholder="(XX)9999-9999"</input>
+						</div>
+						
+						<!-- Botões de Adicionar/Salvar e Cancelar -->
+						<div align="right">
+							<button tabindex=4 class="btn btn-success" type="submit">{{caption}}</button>
+							<button tabindex=5 ng-if="caption=='Salvar'" class="btn btn-danger">Cancelar</button>
+						</div>
+						<br>
+						<br>
+						<!-- Texto indicativo -->
+						<div class="alert alert-danger" ng-if="caption=='Salvar'" >Aviso: Os dados são salvos automaticamente.</div>
+					</div>
+				
+					<div class="col-xs-8">
+						<table class="table table-hover table-bordered">
+							<thead>
+								<tr>
+									<!-- <th>#</th> -->
+									<th>Nome</th>
+									<th>E-Mail</th>	
+									<th>Telefone</th>
+									<th>Opções</th>	
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="user in dados">
+									<!-- <td>{{$index}}</td> -->
+									<td>{{user.nome}}</td>
+									<td>{{user.email}}</td>
+									<td>{{user.telefone}}</td>
+									<td>
+									<!-- Botões de Opções -->
+									<button ng-click="excluirDados($index)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+									<buttin ng-click="editarDados($index)" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i></buttin>
+									</td>	
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+	
+			</form>
+		</div>
+
+	</div>
+</body>
+</html>
